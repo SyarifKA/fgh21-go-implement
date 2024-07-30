@@ -2,17 +2,9 @@ package main
 
 import "fmt"
 
-func fazzfood(price int, promoCode string, inputDistance int, tax bool){
-	var deliveryFee int = 5000
-	var distance int = 2
-	var taxValue int = 0
-	var discount int = 0
-	var distanceDifference int = 0
-
-	// Menampilkan harga
-	fmt.Printf("Harga		: %d\n", price)
-	
+func calcDiscount(price int, promoCode string) (int) {
 	// Perhitungan promo
+	var discount int = 0
 	if promoCode == "FAZZFOOD50" {
 		if price >= 50000{
 			discount = price * 1/2
@@ -28,27 +20,42 @@ func fazzfood(price int, promoCode string, inputDistance int, tax bool){
 			}
 		}
 	}
+	return discount
+}
 
-	// Potongan
-	fmt.Printf("Potongan	: %d\n", discount)
-	
-	// Perhitungan tax
+func calcTax(price int, tax bool) (int){
+	var taxValue int = 0
 	if tax == true {
 		taxValue = price * 5/100
 	}
-	fmt.Printf("Pajak		: %d\n", taxValue)
-	
-	// Perhitungan biaya antar
+	return taxValue
+}
+
+func calcDeliveryFee(inputDistance int)(int){
+	var distance int = 2
+	var distanceDifference int = 0
+	var deliveryFee int = 5000
 	if inputDistance < distance {
 		deliveryFee = deliveryFee
-	}else if inputDistance > distance {
-		distanceDifference = inputDistance - distance
-		deliveryFee = deliveryFee + (distanceDifference*3000)
+		}else if inputDistance > distance {
+			distanceDifference = inputDistance - distance
+			deliveryFee = deliveryFee + (distanceDifference*3000)
 	}
+	return deliveryFee
+}
 
+func fazzfood(price int, promoCode string, inputDistance int, tax bool){
+	deliveryFee := calcDeliveryFee(inputDistance)
+	discount := calcDiscount(price, promoCode)
+	taxValue := calcTax(price, tax)
+
+	// Menampilkan harga
+	fmt.Printf("Harga		: %d\n", price)
+	fmt.Printf("Potongan	: %d\n", discount)
+	fmt.Printf("Pajak		: %d\n", taxValue)
 	fmt.Printf("Biaya Antar	: %d\n", deliveryFee)
 	
-	var subTotal = (price + deliveryFee + taxValue)-discount
+	subTotal := (price + deliveryFee + taxValue)-discount
 	fmt.Printf("SubTotal	: %d", subTotal)
 }
 
