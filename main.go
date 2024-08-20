@@ -3,9 +3,8 @@ package main
 import (
 	// "fazztrack/fazzfood/fazz"
 	// "fazztrack/fazzfood/survey"
-	"fazztrack/fazzfood/matrix"
-	example "fazztrack/fazzfood/struct"
-	"fmt"
+
+	"fazztrack/fazzfood/pointer"
 )
 
 type Bio struct{
@@ -30,17 +29,19 @@ func main(){
 	// }
 	// fmt.Println(hobbies)
 
-	var bio Bio = Bio {
-		fullName: "fazztrack",
-		age: 20,
-		hobbies: []string{
-			"programming",
-			"Hiking",
-		},
-	}
-	fmt.Println(bio)
+	// var bio Bio = Bio {
+	// 	fullName: "fazztrack",
+	// 	age: 20,
+	// 	hobbies: []string{
+	// 		"programming",
+	// 		"Hiking",
+	// 	},
+	// }
+	// fmt.Println(bio)
 
-	// survey.DataSurvey()
-	example.DataSurvey()
-	matrix.Matrix()
+	// // survey.DataSurvey()
+	// example.DataSurvey()
+	// matrix.Matrix()
+
+	pointer.TestPointer()
 }
